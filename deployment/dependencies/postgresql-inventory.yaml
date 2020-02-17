@@ -41,12 +41,12 @@ spec:
             - name: postgredb
               mountPath: /var/lib/postgresql/data
               subPath: postgres
-    volumeClaimTemplates:
-      - metadata:
-          name: postgredb
-        spec:
-          accessModes: [ "ReadWriteOnce" ]
-          storageClassName: ibmc-block-gold
-          resources:
-            requests:
-              storage: 1Gi
+  volumeClaimTemplates:
+    - metadata:
+        name: postgredb
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: ibmc-block-gold
+        resources:
+          requests:
+            storage: 1Gi
