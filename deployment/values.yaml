@@ -27,7 +27,7 @@ deployment:
       timeoutSeconds: 1
       initialDelaySeconds: 15
       httpGet:
-        path: /healthCheck
+        path: /actuator/health
         port: 8080
     livenessProbe:
       failureThreshold: 3
@@ -36,7 +36,7 @@ deployment:
       timeoutSeconds: 1
       initialDelaySeconds: 15
       httpGet:
-        path: /healthCheck
+        path: /actuator/health
         port: 8080
 service:
   ports:
