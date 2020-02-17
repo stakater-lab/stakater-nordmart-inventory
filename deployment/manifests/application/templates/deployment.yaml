@@ -37,10 +37,13 @@ spec:
             value: http://jaeger-collector.istio-system:14268/api/traces
           - name: POSTGRESQL_HOST
             value: stakater-nordmart-inventory-postgresql-svc
-          - name: POSTGRESQL_PASSWORD
-            value: password
           - name: DB_NAME
             value: inventory
+          - name: POSTGRESQL_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                key: POSTGRESQL_PASSWORD
+                name: stakater-nordmart-inventory-postgresql-secret
           
         livenessProbe:
           failureThreshold: 3
