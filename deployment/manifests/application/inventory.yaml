@@ -74,6 +74,12 @@ spec:
         env:
           - name: JAEGER_ENDPOINT
             value: http://jaeger-collector.istio-system:14268/api/traces
+          - name: POSTGRESQL_HOST
+            value: stakater-nordmart-inventory-postgresql-svc
+          - name: POSTGRESQL_PASSWORD
+            value: password
+          - name: DB_NAME
+            value: inventory
           
         livenessProbe:
           failureThreshold: 3
