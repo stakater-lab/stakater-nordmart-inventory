@@ -6,7 +6,6 @@ releaseApplication {
     appType = "maven"
     builderImage = "stakater/builder-maven:3.5.4-jdk1.8-apline8-v0.0.3"
     goal = "clean package"
-    artifactType = '-swarm.jar'
     notifySlack = true
     runIntegrationTest = false
     gitUser = "stakater-user"
