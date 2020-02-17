@@ -69,7 +69,7 @@ spec:
     spec:
       containers:
       - name: inventory
-        image: "stakater/stakater-nordmart-inventory:v0.0.2"
+        image: "stakater/stakater-nordmart-inventory:v0.0.3"
         imagePullPolicy: IfNotPresent
         env:
           - name: JAEGER_ENDPOINT
