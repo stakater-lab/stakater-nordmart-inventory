@@ -1,0 +1,58 @@
+---
+# Source: application/templates/deployment.yaml
+
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: inventory
+    group: com.stakater.platform
+    provider: stakater
+    version: "1.0.0"
+    chart: "application-0.0.13"
+    release: "NAMESPACE_NAME-inventory"
+    heritage: "Tiller"
+  name: inventory
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: inventory
+        group: com.stakater.platform
+        provider: stakater
+        version: "1.0.0"
+        chart: "application-0.0.13"
+        release: "NAMESPACE_NAME-inventory"
+        heritage: "Tiller"
+        app: inventory
+        
+    spec:
+      containers:
+      - name: inventory
+        image: "stakater/stakater-nordmart-inventory:v0.0.2"
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: JAEGER_ENDPOINT
+            value: http://jaeger-collector.istio-system:14268/api/traces
+          
+        livenessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthCheck
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 1
+        readinessProbe:
+          failureThreshold: 3
+          httpGet:
+            path: /healthCheck
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 60
+          successThreshold: 1
+          timeoutSeconds: 1
+        
+      serviceAccountName: inventory        
