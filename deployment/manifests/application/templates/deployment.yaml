@@ -43,7 +43,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: POSTGRESQL_PASSWORD
-                name: stakater-nordmart-inventory-postgresql-secret
+                name: inventory-postgresql-secret
           
         livenessProbe:
           failureThreshold: 3

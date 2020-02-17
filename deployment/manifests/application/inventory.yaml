@@ -1,4 +1,22 @@
 ---
+# Source: application/templates/secret.yaml
+
+apiVersion: v1
+kind: Secret
+metadata:
+  labels:
+    app: inventory
+    group: com.stakater.platform
+    provider: stakater
+    version: "1.0.0"
+    chart: "application-0.0.13"
+    release: "NAMESPACE_NAME-inventory"
+    heritage: "Tiller"
+  name: inventory-postgresql-secret
+data:
+  POSTGRESQL_PASSWORD: cGFzc3dvcmQ=
+---
+---
 # Source: application/templates/serviceaccount.yaml
 
 apiVersion: v1
@@ -82,7 +100,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 key: POSTGRESQL_PASSWORD
-                name: stakater-nordmart-inventory-postgresql-secret
+                name: inventory-postgresql-secret
           
         livenessProbe:
           failureThreshold: 3
@@ -127,7 +145,4 @@ spec:
 
 ---
 # Source: application/templates/routes.yaml
-
----
-# Source: application/templates/secret.yaml
 

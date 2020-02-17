@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.stakater</groupId>
 	<artifactId>inventory</artifactId>
-	<version>v0.0.5</version>
+	<version>v0.0.6</version>
 	<name>inventory</name>
 	<description>A Spring boot inventory application that exposes product's inventory status on REST API endpoints.</description>
 
