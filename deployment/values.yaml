@@ -17,7 +17,7 @@ deployment:
   - name: POSTGRESQL_PASSWORD
     valueFrom:
       secretKeyRef:
-        name: stakater-nordmart-inventory-postgresql-secret
+        name: inventory-postgresql-secret
         key: POSTGRESQL_PASSWORD
   probes:
     readinessProbe:
@@ -49,4 +49,10 @@ rbac:
     create: true
 configMap:
   enabled: false
+secret:
+   enabled: true
+   files:
+   - nameSuffix: postgresql-secret
+     data:
+       POSTGRESQL_PASSWORD: password
 
