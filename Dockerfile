@@ -4,7 +4,7 @@ WORKDIR .
 
 COPY . .
 
-RUN mvn clean package wildfly-swarm:package
+RUN mvn clean package
 
 FROM gcr.io/distroless/java:8
 
