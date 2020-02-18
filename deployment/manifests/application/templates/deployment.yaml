@@ -12,6 +12,7 @@ metadata:
     chart: "application-0.0.13"
     release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
+    category: deployment
   name: inventory
 spec:
   replicas: 1
@@ -26,6 +27,7 @@ spec:
         release: "NAMESPACE_NAME-inventory"
         heritage: "Tiller"
         app: inventory
+        category: backend
         
     spec:
       containers:

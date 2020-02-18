@@ -4,6 +4,7 @@ metadata:
   name: stakater-nordmart-inventory-postgresql-config.yaml
   labels:
     app: postgres
+    category: service
 data:
   POSTGRES_DB: inventory
   POSTGRES_USER: admin

@@ -3,6 +3,7 @@ kind: Service
 metadata:
   labels:
     app: postgres
+    category: service
   name: stakater-nordmart-inventory-postgresql-svc
 spec:
   ports:
@@ -27,6 +28,7 @@ spec:
     metadata:
       labels:
         app: postgres
+        category: datasource
     spec:
       containers:
         - name: postgres
