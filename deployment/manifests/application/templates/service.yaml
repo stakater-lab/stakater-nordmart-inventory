@@ -10,13 +10,12 @@ metadata:
     provider: stakater
     version: "1.0.0"
     chart: "application-0.0.13"
-    release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
   name: inventory
 spec:
   selector:
     app: inventory
-    
+
   ports:
     - name: https
       port: 8080

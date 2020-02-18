@@ -10,7 +10,6 @@ metadata:
     provider: stakater
     version: "1.0.0"
     chart: "application-0.0.13"
-    release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
   name: inventory
 spec:
@@ -23,10 +22,9 @@ spec:
         provider: stakater
         version: "1.0.0"
         chart: "application-0.0.13"
-        release: "NAMESPACE_NAME-inventory"
         heritage: "Tiller"
         app: inventory
-        
+
     spec:
       containers:
       - name: inventory
@@ -44,7 +42,7 @@ spec:
               secretKeyRef:
                 key: POSTGRESQL_PASSWORD
                 name: inventory-postgresql-secret
-          
+
         livenessProbe:
           failureThreshold: 3
           httpGet:
@@ -63,5 +61,5 @@ spec:
           periodSeconds: 60
           successThreshold: 1
           timeoutSeconds: 1
-        
-      serviceAccountName: inventory        
+
+      serviceAccountName: inventory

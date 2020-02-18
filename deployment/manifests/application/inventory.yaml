@@ -10,7 +10,6 @@ metadata:
     provider: stakater
     version: "1.0.0"
     chart: "application-0.0.13"
-    release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
   name: inventory-postgresql-secret
 data:
@@ -28,7 +27,6 @@ metadata:
     provider: stakater
     version: "1.0.0"
     chart: "application-0.0.13"
-    release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
   name: inventory
 ---
@@ -43,7 +41,6 @@ metadata:
     provider: stakater
     version: "1.0.0"
     chart: "application-0.0.13"
-    release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
   name: inventory
 spec:
@@ -67,7 +64,6 @@ metadata:
     provider: stakater
     version: "1.0.0"
     chart: "application-0.0.13"
-    release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
   name: inventory
 spec:
@@ -80,7 +76,6 @@ spec:
         provider: stakater
         version: "1.0.0"
         chart: "application-0.0.13"
-        release: "NAMESPACE_NAME-inventory"
         heritage: "Tiller"
         app: inventory
         
