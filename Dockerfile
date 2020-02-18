@@ -12,7 +12,7 @@ LABEL name="Inventory Service" \
       maintainer="Stakater <stakater@aurorasolutions.io>" \
       vendor="Stakater" \
       release="1" \
-      summary="Project containing inventory service with wildfly for Nordmart"
+      summary="Project containing inventory service with springboot for Nordmart"
 
 USER 1001
 
