@@ -12,7 +12,6 @@ metadata:
     chart: "application-0.0.13"
     release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
-    category: secret
   name: inventory-postgresql-secret
 data:
   POSTGRESQL_PASSWORD: cGFzc3dvcmQ=
@@ -31,7 +30,6 @@ metadata:
     chart: "application-0.0.13"
     release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
-    category: serviceaccount
   name: inventory
 ---
 # Source: application/templates/service.yaml
@@ -47,7 +45,6 @@ metadata:
     chart: "application-0.0.13"
     release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
-    category: service
   name: inventory
 spec:
   selector:
@@ -72,7 +69,6 @@ metadata:
     chart: "application-0.0.13"
     release: "NAMESPACE_NAME-inventory"
     heritage: "Tiller"
-    category: deployment
   name: inventory
 spec:
   replicas: 1
@@ -87,8 +83,7 @@ spec:
         release: "NAMESPACE_NAME-inventory"
         heritage: "Tiller"
         app: inventory
-        category: backend
-
+        
     spec:
       containers:
       - name: inventory
@@ -126,7 +121,7 @@ spec:
           successThreshold: 1
           timeoutSeconds: 1
         
-      serviceAccountName: inventory
+      serviceAccountName: inventory        
 ---
 # Source: application/templates/clusterrole.yaml
 
