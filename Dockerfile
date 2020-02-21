@@ -9,7 +9,7 @@ RUN mvn clean package
 FROM gcr.io/distroless/java:8
 
 LABEL name="Inventory Service" \
-      maintainer="Stakater <stakater@aurorasolutions.io>" \
+      maintainer="hello@stakater.com" \
       vendor="Stakater" \
       release="1" \
       summary="Project containing inventory service with springboot for Nordmart"
