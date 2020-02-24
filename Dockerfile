@@ -1,11 +1,3 @@
-# FROM stakater/pipeline-tools:v2.0.16 AS BUILD_IMAGE
-FROM maven:3.3.9 AS BUILD_IMAGE
-WORKDIR .
-
-COPY . .
-
-RUN mvn clean package
-
 FROM gcr.io/distroless/java:8
 
 LABEL name="Inventory Service" \
@@ -32,6 +24,6 @@ ENV JAEGER_SERVICE_NAME=nordmart-opentracing-inventory\
 EXPOSE 8080
 
 # NOTE we assume there's only 1 jar in the target dir
-COPY --from=BUILD_IMAGE /target/*.jar $HOME/artifacts/app.jar
+COPY target/*.jar $HOME/artifacts/app.jar
 
 CMD ["artifacts/app.jar"]
