@@ -8,6 +8,8 @@ LABEL name="Inventory Service" \
       vendor="Stakater" \
       release="1" \
       summary="Project containing inventory service with springboot for Nordmart"
+ENV HOME=/opt/app
+WORKDIR $HOME
 # Pass environment variables for jaeger opentracing
 ENV JAEGER_SERVICE_NAME=nordmart-opentracing-inventory\
   JAEGER_PROPAGATION=b3\
