@@ -12,6 +12,8 @@ ENV HOME=/opt/app
 WORKDIR $HOME
 #adding new linewe
 #adding new line
+#adding new line
+#adding new line
 #testing commit
 #testing commit
 # Pass environmadsqweent variables for jaeger opentracing
