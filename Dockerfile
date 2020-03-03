@@ -8,7 +8,7 @@ LABEL name="Inventory Service" \
 
 USER 1001
 
-ENV HOME=/opt/app
+ENV HOME=/opt/appasd
 WORKDIR $HOME
 # Pass environment variables for jaeger opentracing
 ENV JAEGER_SERVICE_NAME=nordmart-opentracing-inventory\
