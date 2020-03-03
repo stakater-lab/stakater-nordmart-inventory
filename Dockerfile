@@ -1,5 +1,5 @@
 FROM gcr.io/distroless/java:8
-
+wqe
 LABEL name="Inventory Service" \
       maintainer="hello@stakater.com" \
       vendor="Stakater" \
@@ -10,7 +10,7 @@ USER 1001
 
 ENV HOME=/opt/appasd
 WORKDIR $HOME
-# Pass environment variables for jaeger opentracing
+# Pass environment variables for jaeger opentqracing
 ENV JAEGER_SERVICE_NAME=nordmart-opentracing-inventory\
   JAEGER_PROPAGATION=b3\
   JAEGER_ENDPOINT="http://jaeger-collector.istio-system:14268/api/traces"\
