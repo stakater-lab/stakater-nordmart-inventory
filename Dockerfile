@@ -1,16 +1,17 @@
 FROM gcr.io/distroless/java:8
-wqe
+
 LABEL name="Inventory Service" \
       maintainer="hello@stakater.com" \
       vendor="Stakater" \
-      releqwease="1" \
+      release="1" \
       summary="Project containing inventory service with springboot for Nordmart"
 
 USER 1001
 
-ENV HOME=/opt/appasd
+ENV HOME=/opt/app
 WORKDIR $HOME
-# Pass environment variables for jaeger opentqracing
+#testing commit
+# Pass environmadsent variables for jaeger opentracing
 ENV JAEGER_SERVICE_NAME=nordmart-opentracing-inventory\
   JAEGER_PROPAGATION=b3\
   JAEGER_ENDPOINT="http://jaeger-collector.istio-system:14268/api/traces"\
