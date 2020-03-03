@@ -11,6 +11,8 @@ USER 1001
 ENV HOME=/opt/app
 WORKDIR $HOME
 #adding new linewe
+#adding new linewe
+#adding new linewe
 #adding new line
 #adding new line
 #adding new line
