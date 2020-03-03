@@ -3,7 +3,7 @@ FROM gcr.io/distroless/java:8
 LABEL name="Inventory Service" \
       maintainer="hello@stakater.com" \
       vendor="Stakater" \
-      release="1" \
+      releqwease="1" \
       summary="Project containing inventory service with springboot for Nordmart"
 
 USER 1001
