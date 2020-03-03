@@ -11,7 +11,7 @@ USER 1001
 ENV HOME=/opt/app
 WORKDIR $HOME
 #testing commit
-# Pass environmadsent variables for jaeger opentracing
+# Pass environmadsqweent variables for jaeger opentracing
 ENV JAEGER_SERVICE_NAME=nordmart-opentracing-inventory\
   JAEGER_PROPAGATION=b3\
   JAEGER_ENDPOINT="http://jaeger-collector.istio-system:14268/api/traces"\
