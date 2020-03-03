@@ -11,6 +11,7 @@ USER 1001
 ENV HOME=/opt/app
 WORKDIR $HOME
 #adding new line
+#adding new line
 #testing commit
 # Pass environmadsqweent variables for jaeger opentracing
 ENV JAEGER_SERVICE_NAME=nordmart-opentracing-inventory\
