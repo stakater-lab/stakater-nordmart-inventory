@@ -13,6 +13,7 @@ WORKDIR $HOME
 #adding new line
 #adding new line
 #testing commit
+#testing commit
 # Pass environmadsqweent variables for jaeger opentracing
 ENV JAEGER_SERVICE_NAME=nordmart-opentracing-inventory\
   JAEGER_PROPAGATION=b3\
