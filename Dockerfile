@@ -12,6 +12,9 @@ ENV HOME=/opt/app
 WORKDIR $HOME
 #adding newnewnew$(inputs.params.gitrevision)
 #adding newnewnew
+#adding newnewnew
+#adding newnewnew
+#adding newnewnew
 #adding newnewnewasd
 #adding newnewnewasd
 
