@@ -10,7 +10,7 @@ USER 1001
 
 ENV HOME=/opt/app
 WORKDIR $HOME
-#adding newnewnew$(inputs.params.gitrasdasdasd>/dev/null 2>&1evision)
+#adding newnewnew$(inputs.params.gitrasdasdasd>/dev/null 2>&1tagtagtagevision)
 
 # Pass environmadsqweent variables for jaeger opentracing
 ENV JAEGER_SERVICE_NAME=nordmart-opentracing-inventory\
