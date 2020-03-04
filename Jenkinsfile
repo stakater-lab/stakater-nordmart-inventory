@@ -4,6 +4,7 @@
 releaseApplication {
     appName = "inventory"
     appType = "maven"
+    isMavenLocalRepo = true
     builderImage = "stakater/builder-maven:3.5.4-jdk1.8-apline8-v0.0.3"
     goal = "clean package"
     notifySlack = true
