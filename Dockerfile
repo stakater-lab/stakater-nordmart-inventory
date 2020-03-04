@@ -4,7 +4,7 @@ LABEL name="Inventory Service" \
       maintainer="hello@stakater.com" \
       vendor="Stakater" \
       release="1" \
-      summary="Project containing inventory service with springboot for Nordmart"
+      summary="Project containing inventory service with springboot for Nordmart Microservices"
 
 USER 1001
 
