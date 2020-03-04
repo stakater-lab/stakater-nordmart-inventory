@@ -5,6 +5,7 @@ LABEL name="Inventory Service" \
       vendor="Stakater" \
       release="1" \
       summary="Project containing inventory service with springboot for Nordmart Microservices"
+      
 USER 1001
 
 ENV HOME=/opt/app
