@@ -12,7 +12,7 @@ ENV HOME=/opt/app
 WORKDIR $HOME
 #adding newnewnew
 #adding newnewnew
-#adding newnewnew
+#adding newnewnewasd
 
 
 # Pass environmadsqweent variables for jaeger opentracing
