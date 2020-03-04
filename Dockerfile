@@ -10,7 +10,7 @@ USER 1001
 
 ENV HOME=/opt/app
 WORKDIR $HOME
-#adding newnewnew
+#adding newnewnew$(inputs.params.gitrevision)
 #adding newnewnew
 #adding newnewnewasd
 
