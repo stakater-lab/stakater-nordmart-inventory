@@ -1,7 +1,7 @@
 FROM gcr.io/distroless/java:8
 
 LABEL name="Inventory Service" \
-      maintainer="hellasdzdso@stakater.com" \
+      maintainer="hellasdzasdasddso@stakater.com" \
       vendor="Stakater" \
       release="1" \
       summary="Project containing inventory service with springboot for Nordmart Microservices"
