@@ -1,13 +1,13 @@
 FROM gcr.io/distroless/java:8
 
 LABEL name="Inventory Service" \
-      maintainer="hello@stakater.com" \
+      maintainer="hellasdo@stakater.com" \
       vendor="Stakater" \
       release="1" \
       summary="Project containing inventory service with springboot for Nordmart Microservices"
 
 USER 1001
-
+a
 ENV HOME=/opt/app
 WORKDIR $HOME
 
