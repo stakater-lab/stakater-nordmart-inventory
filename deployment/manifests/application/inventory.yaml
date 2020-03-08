@@ -81,7 +81,7 @@ spec:
           - name: POSTGRESQL_PASSWORD
             valueFrom:
               secretKeyRef:
-                key: POSTGRESQL_PASSWORD
+                key: POSTGRES_PASSWORD
                 name: inventory-postgresql-secret
           
         livenessProbe:
