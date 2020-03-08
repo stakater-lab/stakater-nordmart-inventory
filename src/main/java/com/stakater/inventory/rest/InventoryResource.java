@@ -34,4 +34,12 @@ public class InventoryResource
 
         return inventoryService.getItemAvailability(itemId);
     }
+
+    @GetMapping("/api/status")
+    public String getStatus()
+    {
+        LOGGER.info("Rest request to get status");
+
+        return "Inventory is ACTIVE";
+    }
 }
