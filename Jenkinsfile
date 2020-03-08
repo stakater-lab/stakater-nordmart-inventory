@@ -4,6 +4,7 @@
 releaseApplication {
     appName = "inventory"
     appType = "maven"
+    isMavenLocalRepo = true
     builderImage = "stakater/builder-maven:3.5.4-jdk1.8-apline8-v0.0.3"
     goal = "clean package"
     notifySlack = true
@@ -13,7 +14,7 @@ releaseApplication {
     usePersonalAccessToken = true
     tokenCredentialID = 'GithubToken'
     serviceAccount = "jenkins"
-    dockerRepositoryURL = 'docker.delivery.stakater.com:443'
+    dockerRepositoryURL = 'docker-delivery.stakater.com:443'
     // configuration parameter for e2e tess
     e2eTestJob = false
     e2eJobName = "../stakater-nordmart-e2e-tests/master"

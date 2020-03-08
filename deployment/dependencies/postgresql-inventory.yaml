@@ -34,8 +34,8 @@ spec:
         - name: postgres
           image: postgres:9.6.16
           envFrom:
-            - configMapRef:
-                name: stakater-nordmart-inventory-postgresql-config.yaml
+            - secretRef:
+                name: inventory-postgresql-secret
           ports:
             - containerPort: 5432
               name: postgredb
