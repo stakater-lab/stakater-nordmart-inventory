@@ -18,7 +18,7 @@ deployment:
     valueFrom:
       secretKeyRef:
         name: inventory-postgresql-secret
-        key: POSTGRESQL_PASSWORD
+        key: POSTGRES_PASSWORD
   probes:
     readinessProbe:
       failureThreshold: 3
