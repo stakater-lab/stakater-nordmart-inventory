@@ -1,7 +1,7 @@
 ---
 # Source: application/templates/deployment.yaml
 
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -14,6 +14,15 @@ metadata:
     heritage: "Tiller"
   name: inventory
 spec:
+  selector:
+    matchLabels:
+      app: inventory
+      group: com.stakater.platform
+      provider: stakater
+      version: "1.0.0"
+      chart: "application-0.0.13"
+      release: "NAMESPACE_NAME-inventory"
+      heritage: "Tiller"
   replicas: 1
   template:
     metadata:
