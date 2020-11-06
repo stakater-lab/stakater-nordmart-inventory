@@ -10,6 +10,9 @@ deployment:
   volumeMounts: []
   securityContext: []
   podLabels: []
+  additionalPodAnnotations:
+    app: "inventory"
+    team: "nordmart"
   image:
     repository: DOCKER_REPOSITORY_URL
     tag: IMAGE_TAG
@@ -45,7 +48,7 @@ deployment:
         path: /actuator/health
         port: 8080
 
-# Role Based Access Control
+# Role based access control
 rbac:
   enabled: true
   serviceAccount:
@@ -58,9 +61,9 @@ service:
     name: http
     targetPort: 8080
 
-# Openshift Route
+# Openshift route
 route:
-  enabled: false
+  enabled: true
   annotations: []
   additionalLabels: 
     router: default
@@ -71,7 +74,7 @@ route:
     termination: edge
     insecureEdgeTerminationPolicy: Redirect
 
-# Service Monitor to collect Prometheus metrices
+# Service monitor to collect prometheus metrices
 serviceMonitor:
   enabled: true
   
