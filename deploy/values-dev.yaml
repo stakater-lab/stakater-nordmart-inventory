@@ -1,12 +1,17 @@
 applicationName: "inventory"
+labels:
+  group: com.stakater
+  team: nordmart
+
 deployment:
-  annotations:
-  podLabels:
-    app: inventory
-  volumes: {}
+  replicas: 1
+  volumes: []
+  volumeMounts: []
+  securityContext: []
+  podLabels: []
   image:
-    repository: stakater/stakater-nordmart-inventory
-    tag: v0.0.3
+    repository: DOCKER_REPOSITORY_URL
+    tag: IMAGE_TAG
   env:
   - name: JAEGER_ENDPOINT
     value: "http://jaeger-collector.istio-system:14268/api/traces"
