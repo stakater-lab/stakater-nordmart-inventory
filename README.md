@@ -10,6 +10,7 @@ It requires following things to be installed:
 
 * Java: ^8.0
 * Maven
+* Postgres
 
 ## Deployment strategy
 
@@ -54,5 +55,4 @@ To deploy app inside a docker container
 #### Pre-requisites
  
 1. Apply dependencies from deployment/dependencies `kubectl apply -f deployment/dependencies`
-2. (a) Using helm `helm install stakater/application -f deployment/values.yaml` 
-   (b) Without helm, `kubectl apply -f deployment/manifests`
+2. With helm `helm install stakater/application -f deployment/values.yaml`. Without helm, `kubectl apply -f deployment/manifests`

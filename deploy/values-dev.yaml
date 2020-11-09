@@ -1,14 +1,18 @@
 applicationName: "inventory"
+
 labels:
   group: com.stakater
   team: nordmart
 
 deployment:
-  replicas: 1
+  replicas: 2
   volumes: []
   volumeMounts: []
   securityContext: []
   podLabels: []
+  additionalPodAnnotations:
+    app: "inventory"
+    team: "nordmart"
   image:
     repository: DOCKER_REPOSITORY_URL
     tag: IMAGE_TAG
@@ -17,13 +21,13 @@ deployment:
     value: "http://jaeger-collector.istio-system:14268/api/traces"
   - name: POSTGRESQL_HOST
     value: "stakater-nordmart-inventory-postgresql-svc"
-  - name: DB_NAME
-    value: "inventory"
   - name: POSTGRESQL_PASSWORD
     valueFrom:
       secretKeyRef:
         name: inventory-postgresql-secret
-        key: POSTGRES_PASSWORD
+        key: POSTGRES_PASSWORD    
+  - name: DB_NAME
+    value: "inventory"
   probes:
     readinessProbe:
       failureThreshold: 3
@@ -43,16 +47,39 @@ deployment:
       httpGet:
         path: /actuator/health
         port: 8080
+
+# Role based access control
+rbac:
+  enabled: true
+  serviceAccount:
+    enabled: true
+
+# Service configuration
 service:
   ports:
   - port: 8080
-    name: https
+    name: http
     targetPort: 8080
-rbac:
-  create: true
-  serviceAccount:
-    create: true
-configMap:
-  enabled: false
-secret:
-   enabled: false
+
+# Openshift route
+route:
+  enabled: true
+  annotations: []
+  additionalLabels: 
+    router: default
+  port:
+    targetPort: http
+  wildcardPolicy: None
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+
+# Service monitor to collect prometheus metrices
+serviceMonitor:
+  enabled: true
+  
+  # List of the endpoints of service from which prometheus will scrape data
+  endpoints:
+  - interval: 5s
+    path: /prometheus
+    port: http
