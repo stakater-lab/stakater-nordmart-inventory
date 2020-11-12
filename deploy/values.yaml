@@ -33,7 +33,7 @@ postgresql:
       synchronousCommit: "off"
       user: repl_user
     postgresqlUsername: "admin"
-    existingSecret:  POSTGRESQL_SECRET #"inventory-postgresql-secret"
+    existingSecret:  POSTGRESQL_SECRET 
     usePasswordFile: false
     postgresqlDatabase: "inventory"
     postgresqlDataDir: /bitnami/postgresql/data
@@ -105,11 +105,11 @@ application:
     - name: JAEGER_ENDPOINT
       value: "http://jaeger-collector.istio-system:14268/api/traces"
     - name: POSTGRESQL_HOST
-      value: "POSTGRESQL_HOST"   # inventory-postgresql
+      value: "POSTGRESQL_HOST"   
     - name: POSTGRESQL_PASSWORD
       valueFrom:
         secretKeyRef:
-          name: POSTGRESQL_SECRET #inventory-postgresql-secret
+          name: POSTGRESQL_SECRET
           key: postgresql-password
     - name: DB_NAME
       value: "inventory"
