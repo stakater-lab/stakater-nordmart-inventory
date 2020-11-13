@@ -1,6 +1,7 @@
 postgresql:
     global:
       postgresql: {}
+    fullnameOverride: inventory-postgres
     image:
       debug: false
       pullPolicy: Always
@@ -33,7 +34,7 @@ postgresql:
       synchronousCommit: "off"
       user: repl_user
     postgresqlUsername: "admin"
-    existingSecret:  POSTGRESQL_SECRET 
+    existingSecret:  inventory-postgresql-secret 
     usePasswordFile: false
     postgresqlDatabase: "inventory"
     postgresqlDataDir: /bitnami/postgresql/data
@@ -47,7 +48,7 @@ postgresql:
       enabled: true
       mountPath: /bitnami/postgresql
       size: 2Gi
-      storageClass: stakater-storageclass  
+      storageClass: stakater 
       subPath: ""
     updateStrategy:
       type: RollingUpdate
@@ -105,11 +106,11 @@ application:
     - name: JAEGER_ENDPOINT
       value: "http://jaeger-collector.istio-system:14268/api/traces"
     - name: POSTGRESQL_HOST
-      value: "POSTGRESQL_HOST"   
+      value: inventory-postgres   
     - name: POSTGRESQL_PASSWORD
       valueFrom:
         secretKeyRef:
-          name: POSTGRESQL_SECRET
+          name: inventory-postgresql-secret
           key: postgresql-password
     - name: DB_NAME
       value: "inventory"
