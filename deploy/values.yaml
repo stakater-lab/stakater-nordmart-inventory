@@ -170,4 +170,3 @@ application:
       path: /prometheus
       port: http
  
-
