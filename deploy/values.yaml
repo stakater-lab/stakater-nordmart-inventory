@@ -101,7 +101,9 @@ application:
         cpu: 0.5
       requests:
         memory: 128Mi
-        cpu: 0.1  
+        cpu: 0.1
+    imagePullSecrets:
+      name: inventory-image-secrets      
     env:
     - name: JAEGER_ENDPOINT
       value: "http://jaeger-collector.istio-system:14268/api/traces"
