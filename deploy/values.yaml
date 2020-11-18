@@ -89,6 +89,8 @@ application:
     volumeMounts: []
     securityContext: []
     podLabels: []
+    imagePullSecrets: 
+      name: inventory-docker-reg
     additionalPodAnnotations:
       app: "inventory"
       team: "nordmart"
