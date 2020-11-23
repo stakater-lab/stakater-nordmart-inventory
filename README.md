@@ -22,6 +22,7 @@ To run the application locally use the command given below:
 mvn spring-boot:run
 ```
 
+
 ### Docker
 
 To deploy app inside a docker container
