@@ -97,7 +97,7 @@ application:
       tag: IMAGE_TAG
     resources: 
       limits:
-        memory: 512Mi
+        memory: 1Gi
         cpu: 0.5
       requests:
         memory: 128Mi
