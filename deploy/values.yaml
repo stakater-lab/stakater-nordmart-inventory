@@ -96,12 +96,16 @@ application:
       tag: IMAGE_TAG
     resources: 
       limits:
-        memory: 512Mi
+        memory: 1Gi
         cpu: 0.5
       requests:
         memory: 128Mi
         cpu: 0.1
+<<<<<<< HEAD
     imagePullSecrets: nexus-docker-config-forked   
+=======
+    imagePullSecrets: nexus-creds     
+>>>>>>> master
     env:
     - name: JAEGER_ENDPOINT
       value: "http://jaeger-collector.istio-system:14268/api/traces"
