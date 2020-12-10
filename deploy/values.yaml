@@ -34,7 +34,6 @@ postgresql:
       synchronousCommit: "off"
       user: repl_user
     postgresqlUsername: "admin"
-    existingSecret:  inventory-postgresql-secret 
     usePasswordFile: false
     postgresqlDatabase: "inventory"
     postgresqlDataDir: /bitnami/postgresql/data
@@ -102,7 +101,8 @@ application:
       requests:
         memory: 128Mi
         cpu: 0.1
-    imagePullSecrets: nexus-creds     
+    imagePullSecrets: nexus-docker-config-forked   
+
     env:
     - name: JAEGER_ENDPOINT
       value: "http://jaeger-collector.istio-system:14268/api/traces"
@@ -111,7 +111,7 @@ application:
     - name: POSTGRESQL_PASSWORD
       valueFrom:
         secretKeyRef:
-          name: inventory-postgresql-secret
+          name: inventory-postgres
           key: postgresql-password
     - name: DB_NAME
       value: "inventory"
