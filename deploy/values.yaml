@@ -82,8 +82,19 @@ application:
   labels:
     group: com.stakater
     team: nordmart
-  
+  configMap:
+    enabled: true
+    files:
+    - nameSuffix: ""
+      data:
+        JAEGER_ENDPOINT: "http://jaeger-collector.istio-system:14268/api/traces"
+        POSTGRESQL_HOST: inventory-postgres
+        DB_NAME: "inventory"
+
   deployment:
+    envFrom:
+    - type: configmap
+      name: ""
     replicas: 2
     volumes: []
     volumeMounts: []
@@ -105,17 +116,11 @@ application:
     imagePullSecrets: nexus-docker-config-forked   
 
     env:
-    - name: JAEGER_ENDPOINT
-      value: "http://jaeger-collector.istio-system:14268/api/traces"
-    - name: POSTGRESQL_HOST
-      value: inventory-postgres   
     - name: POSTGRESQL_PASSWORD
       valueFrom:
         secretKeyRef:
           name: inventory-postgres
           key: postgresql-password
-    - name: DB_NAME
-      value: "inventory"
     probes:
       readinessProbe:
         failureThreshold: 3
