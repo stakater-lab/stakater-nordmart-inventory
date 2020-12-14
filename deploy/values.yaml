@@ -2,6 +2,7 @@ postgresql:
     global:
       postgresql: {}
     fullnameOverride: inventory-postgres
+    existingSecret: inventory-postgres
     image:
       debug: false
       pullPolicy: Always
