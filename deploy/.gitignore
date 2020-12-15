@@ -29,8 +29,9 @@ bin/*
 *.un~
 Session.vim
 .netrwhist
-Chart.lock
+
 # Chart dependencies
+Chart.lock
 **/charts/*.tgz
 
 .history
