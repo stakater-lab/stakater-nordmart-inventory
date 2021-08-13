@@ -1,3 +1,109 @@
+application:
+  applicationName: "inventory"
+  # space for preview environments
+  space:
+    enabled: true
+    additionalLabels:
+      kind: pr
+      team: veeru
+    annotations:
+      argocd.argoproj.io/sync-wave: "-1"
+    tenant: veeru
+  # labels to be added to all resources
+  labels:
+    group: com.stakater
+    team: nordmart
+  # configmap for the application
+  configMap:
+    enabled: true
+    files:
+    - nameSuffix: ""
+      data:
+        POSTGRESQL_HOST: inventory-postgres
+        DB_NAME: "inventory"
+  # application deployment
+  deployment:
+    envFrom:
+    - type: configmap
+      name: ""
+    replicas: 2
+    volumes: []
+    volumeMounts: []
+    securityContext: []
+    podLabels: []
+    additionalPodAnnotations:
+      app: "inventory"
+      team: "nordmart"
+    image:
+      # replaced by CI pipeline
+      repository: {{ IMAGE }}
+      # replaced by CI pipeline     
+      tag: {{ TAG }}    
+    resources: 
+      limits:
+        memory: 1Gi
+        cpu: 0.5
+      requests:
+        memory: 128Mi
+        cpu: 0.1
+    imagePullSecrets: nexus-docker-config-forked   
+    env:
+    - name: POSTGRESQL_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: inventory-postgres
+          key: postgresql-password
+    probes:
+      readinessProbe:
+        failureThreshold: 3
+        periodSeconds: 60
+        successThreshold: 1
+        timeoutSeconds: 1
+        initialDelaySeconds: 15
+        httpGet:
+          path: /actuator/health
+          port: 8080
+      livenessProbe:
+        failureThreshold: 3
+        periodSeconds: 60
+        successThreshold: 1
+        timeoutSeconds: 1
+        initialDelaySeconds: 15
+        httpGet:
+          path: /actuator/health
+          port: 8080
+  # role based access control
+  rbac:
+    enabled: true
+    serviceAccount:
+      enabled: true
+  # service configuration
+  service:
+    ports:
+    - port: 8080
+      name: http
+      targetPort: 8080
+  # route configuration
+  route:
+    enabled: true
+    annotations: []
+    additionalLabels: 
+      router: default
+    port:
+      targetPort: http
+    wildcardPolicy: None
+    tls:
+      termination: edge
+      insecureEdgeTerminationPolicy: Redirect
+  # service monitor to collect prometheus metrices
+  serviceMonitor:
+    enabled: true
+    # List of the endpoints of service from which prometheus will scrape data
+    endpoints:
+    - interval: 5s
+      path: /prometheus
+      port: http
+
 postgresql:
   global:
     postgresql: {}
@@ -76,103 +182,3 @@ postgresql:
     periodSeconds: 10
     successThreshold: 1
     timeoutSeconds: 5
-application:
-  applicationName: "inventory"
-  
-  labels:
-    group: com.stakater
-    team: nordmart
-  configMap:
-    enabled: true
-    files:
-    - nameSuffix: ""
-      data:
-        JAEGER_ENDPOINT: "http://jaeger-collector.istio-system:14268/api/traces"
-        POSTGRESQL_HOST: inventory-postgres
-        DB_NAME: "inventory"
-
-  deployment:
-    envFrom:
-    - type: configmap
-      name: ""
-    replicas: 2
-    volumes: []
-    volumeMounts: []
-    securityContext: []
-    podLabels: []
-    additionalPodAnnotations:
-      app: "inventory"
-      team: "nordmart"
-    image:
-      repository: DOCKER_REPOSITORY_URL
-      tag: IMAGE_TAG
-    resources: 
-      limits:
-        memory: 1Gi
-        cpu: 0.5
-      requests:
-        memory: 128Mi
-        cpu: 0.1
-    imagePullSecrets: nexus-docker-config-forked   
-
-    env:
-    - name: POSTGRESQL_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: inventory-postgres
-          key: postgresql-password
-    probes:
-      readinessProbe:
-        failureThreshold: 3
-        periodSeconds: 60
-        successThreshold: 1
-        timeoutSeconds: 1
-        initialDelaySeconds: 15
-        httpGet:
-          path: /actuator/health
-          port: 8080
-      livenessProbe:
-        failureThreshold: 3
-        periodSeconds: 60
-        successThreshold: 1
-        timeoutSeconds: 1
-        initialDelaySeconds: 15
-        httpGet:
-          path: /actuator/health
-          port: 8080
-  
-  # Role based access control
-  rbac:
-    enabled: true
-    serviceAccount:
-      enabled: true
-  
-  # Service configuration
-  service:
-    ports:
-    - port: 8080
-      name: http
-      targetPort: 8080
-  
-  # Openshift route
-  route:
-    enabled: true
-    annotations: []
-    additionalLabels: 
-      router: default
-    port:
-      targetPort: http
-    wildcardPolicy: None
-    tls:
-      termination: edge
-      insecureEdgeTerminationPolicy: Redirect
-  
-  # Service monitor to collect prometheus metrices
-  serviceMonitor:
-    enabled: true
-    
-    # List of the endpoints of service from which prometheus will scrape data
-    endpoints:
-    - interval: 5s
-      path: /prometheus
-      port: http
