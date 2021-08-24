@@ -78,7 +78,9 @@ postgresql:
     timeoutSeconds: 5
 application:
   applicationName: "inventory"
-  
+  space:
+     enabled: true
+     tenant: gabbar
   labels:
     group: com.stakater
     team: nordmart
