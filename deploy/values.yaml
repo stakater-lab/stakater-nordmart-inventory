@@ -2,7 +2,7 @@ postgresql:
   global:
     postgresql: {}
   fullnameOverride: inventory-postgres
-  existingSecret: inventory-postgres
+  postgresqlPassword: postgres-password
   image:
     debug: false
     pullPolicy: Always
@@ -119,10 +119,7 @@ application:
 
     env:
     - name: POSTGRESQL_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: inventory-postgres
-          key: postgresql-password
+      value: postgres-password
     probes:
       readinessProbe:
         failureThreshold: 3
