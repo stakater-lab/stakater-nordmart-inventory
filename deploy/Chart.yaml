@@ -1,5 +1,5 @@
 apiVersion: v2
-name: helm
+name: stakater-nordmart-inventory
 description: A Helm chart for Kubernetes
 dependencies:
 - name: postgresql
