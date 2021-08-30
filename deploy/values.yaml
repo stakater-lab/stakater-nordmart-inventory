@@ -81,6 +81,11 @@ application:
   space:
      enabled: true
      tenant: gabbar
+     additionalLabels:
+       kind: pr
+       team: gabbar
+     annotations:
+       argocd.argoproj.io/sync-wave: "-1"
   labels:
     group: com.stakater
     team: nordmart
