@@ -2,7 +2,7 @@ postgresql:
   global:
     postgresql: {}
   fullnameOverride: inventory-postgres
-  existingSecret: inventory-postgres
+  postgresqlPassword: postgres-password
   image:
     debug: false
     pullPolicy: Always
@@ -78,7 +78,14 @@ postgresql:
     timeoutSeconds: 5
 application:
   applicationName: "inventory"
-  
+  space:
+     enabled: true
+     tenant: gabbar
+     additionalLabels:
+       kind: pr
+       team: gabbar
+     annotations:
+       argocd.argoproj.io/sync-wave: "-1"
   labels:
     group: com.stakater
     team: nordmart
@@ -117,10 +124,7 @@ application:
 
     env:
     - name: POSTGRESQL_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: inventory-postgres
-          key: postgresql-password
+      value: postgres-password
     probes:
       readinessProbe:
         failureThreshold: 3
@@ -176,3 +180,4 @@ application:
     - interval: 5s
       path: /prometheus
       port: http
+      
