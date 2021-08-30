@@ -178,3 +178,4 @@ application:
     - interval: 5s
       path: /prometheus
       port: http
+      
