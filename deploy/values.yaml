@@ -2,7 +2,6 @@ postgresql:
   global:
     postgresql: {}
   fullnameOverride: inventory-postgres
-  postgresqlPassword: postgres-password
   image:
     debug: false
     pullPolicy: Always
@@ -36,6 +35,7 @@ postgresql:
     user: repl_user
   postgresqlUsername: "admin"
   usePasswordFile: false
+  existingSecret: inventory-postgres
   postgresqlDatabase: "inventory"
   postgresqlDataDir: /bitnami/postgresql/data
   service:
@@ -79,13 +79,13 @@ postgresql:
 application:
   applicationName: "inventory"
   space:
+     enabled: false
+  namespace:
      enabled: true
-     tenant: gabbar
      additionalLabels:
-       kind: pr
-       team: gabbar
-     annotations:
-       argocd.argoproj.io/sync-wave: "-1"
+        kind: pr
+        team: gabbar
+        stakater.com/tenant: veeru
   labels:
     group: com.stakater
     team: nordmart
@@ -97,14 +97,37 @@ application:
         JAEGER_ENDPOINT: "http://jaeger-collector.istio-system:14268/api/traces"
         POSTGRESQL_HOST: inventory-postgres
         DB_NAME: "inventory"
-
+  secretProviderClass:
+       enabled: true
+       name: inventory-postgres
+       provider: vault
+       roleName: '{{ .Release.Namespace }}'
+       objects: |
+         - objectName: "postgresql-passowrd"
+           secretPath: "veeru/kv/data/inventory-postgres"
+           secretKey: "postgresql-password"  
+       secretObjects:
+         - data:
+           - key: postgresql-password
+             objectName: postgresql-passowrd
+           secretName: inventory-postgres
+           type: Opaque 
+  
   deployment:
     envFrom:
     - type: configmap
       name: ""
     replicas: 2
-    volumes: []
-    volumeMounts: []
+    volumes: 
+     - name: inventory-postgres
+       csi:
+         driver: secrets-store.csi.k8s.io
+         readOnly: true
+         volumeAttributes:
+           secretProviderClass: inventory-postgres
+    volumeMounts: 
+     - name: inventory-postgres
+       mountPath: /data/db
     securityContext: []
     podLabels: []
     additionalPodAnnotations:
@@ -121,10 +144,12 @@ application:
         memory: 128Mi
         cpu: 0.1
     imagePullSecrets: nexus-docker-config-forked   
-
     env:
     - name: POSTGRESQL_PASSWORD
-      value: postgres-password
+      valueFrom:
+         secretKeyRef:
+           name: inventory-postgres
+           key: postgresql-password
     probes:
       readinessProbe:
         failureThreshold: 3
