@@ -83,6 +83,8 @@ application:
   namespace:
      enabled: true
      additionalLabels:
+        kind: pr
+        team: gabbar
         stakater.com/tenant: veeru
   labels:
     group: com.stakater
