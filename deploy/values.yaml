@@ -82,7 +82,7 @@ application:
      enabled: false
   namespace:
      enabled: true
-     labels:
+     additionalLabels:
         stakater.com/tenant: veeru
   labels:
     group: com.stakater
