@@ -79,13 +79,11 @@ postgresql:
 application:
   applicationName: "inventory"
   space:
+     enabled: false
+  namespace:
      enabled: true
-     tenant: gabbar
-     additionalLabels:
-       kind: pr
-       team: gabbar
-     annotations:
-       argocd.argoproj.io/sync-wave: "-1"
+     labels:
+        stakater.com/tenant: veeru
   labels:
     group: com.stakater
     team: nordmart
