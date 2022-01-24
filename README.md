@@ -13,7 +13,7 @@ It requires following things to be installed:
 * Maven
 * Postgres
 
-## Deployment strategy
+### Deployment strategy
 
 ### Local deployment
 
