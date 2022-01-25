@@ -81,7 +81,7 @@ application:
   space:
      enabled: false
   namespace:
-     enabled: true
+     enabled: false
      additionalLabels:
         kind: pr
         team: gabbar
