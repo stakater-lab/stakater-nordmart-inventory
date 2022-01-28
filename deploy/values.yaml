@@ -94,7 +94,7 @@ application:
     secretStore:
       name: tenant-vault-access
     files:   
-    inventory-postgres:
+     inventory-postgres:
       data:
         postgresql-password: 
           remoteRef:
