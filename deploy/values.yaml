@@ -97,21 +97,17 @@ application:
         JAEGER_ENDPOINT: "http://jaeger-collector.istio-system:14268/api/traces"
         POSTGRESQL_HOST: inventory-postgres
         DB_NAME: "inventory"
-  secretProviderClass:
-       enabled: true
-       name: inventory-postgres
-       provider: vault
-       roleName: '{{ .Release.Namespace }}'
-       objects: |
-         - objectName: "postgresql-passowrd"
-           secretPath: "veeru/kv/data/inventory-postgres"
-           secretKey: "postgresql-password"  
-       secretObjects:
-         - data:
-           - key: postgresql-password
-             objectName: postgresql-passowrd
-           secretName: inventory-postgres
-           type: Opaque 
+  externalSecret:
+    enabled: true
+    secretStore:
+      name: tenant-vault-access
+    files:   
+    inventory-postgres:
+      data:
+        postgresql-password: 
+          remoteRef:
+            key: inventory-postgres
+            property: postgresql-password
   
   deployment:
     envFrom:
