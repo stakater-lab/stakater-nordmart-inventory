@@ -100,7 +100,7 @@ application:
   externalSecret:
     enabled: true
     secretStore:
-      name: tenant-vault-access
+      name: tenant-vault-secret-store
     files:   
     inventory-postgres:
       data:
