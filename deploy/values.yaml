@@ -106,16 +106,6 @@ application:
     - type: configmap
       name: ""
     replicas: 2
-    volumes: 
-     - name: inventory-postgres
-       csi:
-         driver: secrets-store.csi.k8s.io
-         readOnly: true
-         volumeAttributes:
-           secretProviderClass: inventory-postgres
-    volumeMounts: 
-     - name: inventory-postgres
-       mountPath: /data/db
     securityContext: []
     podLabels: []
     additionalPodAnnotations:
