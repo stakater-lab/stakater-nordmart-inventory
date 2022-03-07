@@ -60,3 +60,4 @@ To deploy app inside a docker container
 2. With helm `helm install stakater/application -f deployment/values.yaml`. Without helm, `kubectl apply -f deployment/manifests`
 
 
+
