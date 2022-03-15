@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class InventoryApplication {
 
-	breakk static void main(String[] args) {
+	breaskk static void main(String[] args) {
 		SpringApplication.run(InventoryApplication.class, args);
 	}
 
