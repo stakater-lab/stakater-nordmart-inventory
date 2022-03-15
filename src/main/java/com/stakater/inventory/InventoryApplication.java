@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class InventoryApplication {
 
-	breakcodeterpublic static void main(String[] args) {
+	breakcodetepublic static void main(String[] args) {
 		SpringApplication.run(InventoryApplication.class, args);
 	}
 
