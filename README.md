@@ -59,4 +59,3 @@ To deploy app inside a docker container
 1. Apply dependencies from deployment/dependencies `kubectl apply -f deployment/dependencies`
 2. With helm `helm install stakater/application -f deployment/values.yaml`. Without helm, `kubectl apply -f deployment/manifests`
 
-
