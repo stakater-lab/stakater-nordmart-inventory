@@ -39,6 +39,7 @@ To deploy app inside a docker container
   mvn clean package
   ```
 
+
 * Next build the image using
 
   ```bash
