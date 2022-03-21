@@ -4,7 +4,6 @@
 
 A Spring boot inventory application that exposes product's inventory status on REST API endpoints.
 
-
 ## Dependencies
 
 It requires following things to be installed:
@@ -12,6 +11,7 @@ It requires following things to be installed:
 * Java: ^8.0
 * Maven
 * Postgres
+
 
 ### Deployment strategy
 
@@ -58,4 +58,3 @@ To deploy app inside a docker container
  
 1. Apply dependencies from deployment/dependencies `kubectl apply -f deployment/dependencies`
 2. With helm `helm install stakater/application -f deployment/values.yaml`. Without helm, `kubectl apply -f deployment/manifests`
-
