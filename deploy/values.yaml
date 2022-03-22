@@ -84,8 +84,7 @@ application:
   configMap:
     enabled: true
     files:
-    - nameSuffix: ""
-      data:
+      config:
         JAEGER_ENDPOINT: "http://jaeger-collector.istio-system:14268/api/traces"
         POSTGRESQL_HOST: inventory-postgres
         DB_NAME: "inventory"
@@ -103,8 +102,9 @@ application:
   
   deployment:
     envFrom:
-    - type: configmap
-      name: ""
+      configurations:
+          type: configmap
+          nameSuffix: "config"
     replicas: 2
     securityContext: []
     podLabels: []
@@ -123,11 +123,11 @@ application:
         cpu: 0.1
     imagePullSecrets: nexus-docker-config-forked   
     env:
-    - name: POSTGRESQL_PASSWORD
-      valueFrom:
-         secretKeyRef:
-           name: inventory-postgres
-           key: postgresql-password
+      POSTGRESQL_PASSWORD:
+        valueFrom:
+          secretKeyRef:
+            name: inventory-postgres
+            key: postgresql-password
     probes:
       readinessProbe:
         failureThreshold: 3
