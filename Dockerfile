@@ -23,8 +23,8 @@ EXPOSE 8080
 # NOTE we assume there's only 1 jar in the target dir
 COPY --from=build /usr/src/app/target/*.jar $HOME/artifacts/app.jar
 
-USER 1001
 
+USER 1001
 
 # Set Entrypoint
 ENTRYPOINT exec java $JAVA_OPTS -jar artifacts/app.jar
