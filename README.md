@@ -25,6 +25,7 @@ mvn spring-boot:run
 
 ### Docker
 
+
 To deploy app inside a docker container
 
 * Create a network if it doesn't already exist by executing
