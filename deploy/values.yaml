@@ -1,86 +1,12 @@
-postgresql:
-  global:
-    postgresql: {}
-  fullnameOverride: inventory-postgres
-  image:
-    debug: false
-    pullPolicy: Always
-  volumePermissions:
-    enabled: true
-    image:
-      pullPolicy: Always
-      registry: docker.io
-      repository: bitnami/minideb
-      tag: stretch
-    securityContext:
-      runAsUser: "auto"
-  shmVolume:
-    chmod:
-      enabled: false
-  containerSecurityContext:
-    enabled: false    
-  securityContext:
-    enabled: false
-    fsGroup: 1001
-    runAsUser: 1001
-  serviceAccount:
-    enabled: true
-  replication:
-    applicationName: my_application
-    enabled: false
-    numSynchronousReplicas: 0
-    password: repl_password
-    slaveReplicas: 1
-    synchronousCommit: "off"
-    user: repl_user
-  postgresqlUsername: "admin"
-  usePasswordFile: false
-  existingSecret: inventory-postgres
-  postgresqlDatabase: "inventory"
-  postgresqlDataDir: /bitnami/postgresql/data
-  service:
-    annotations: {}
-    port: 5432
-    type: ClusterIP
-  persistence:
-    accessModes:
-    - ReadWriteOnce
-    enabled: true
-    mountPath: /bitnami/postgresql
-    size: 2Gi
-    storageClass: stakater 
-    subPath: ""
-  updateStrategy:
-    type: RollingUpdate
-  resources:
-    requests:
-      cpu: 200m
-      memory: 256Mi
-    limits:
-      cpu: 500m
-      memory: 1Gi
-  networkPolicy:
-    allowExternal: true
-    enabled: false
-  livenessProbe:
-    enabled: true
-    failureThreshold: 6
-    initialDelaySeconds: 30
-    periodSeconds: 10
-    successThreshold: 1
-    timeoutSeconds: 5
-  readinessProbe:
-    enabled: true
-    failureThreshold: 6
-    initialDelaySeconds: 5
-    periodSeconds: 10
-    successThreshold: 1
-    timeoutSeconds: 5
+## Application
+
 application:
   applicationName: "inventory"
   labels:
     group: com.stakater
     team: nordmart
+   
+  # Configmap 
   configMap:
     enabled: true
     files:
@@ -88,6 +14,8 @@ application:
         JAEGER_ENDPOINT: "http://jaeger-collector.istio-system:14268/api/traces"
         POSTGRESQL_HOST: inventory-postgres
         DB_NAME: "inventory"
+        
+  # Inject secret from vault      
   externalSecret:
     enabled: true
     secretStore:
@@ -100,6 +28,7 @@ application:
             key: inventory-postgres
             property: postgresql-password
   
+  # Deployment
   deployment:
     envFrom:
       configurations:
@@ -184,3 +113,92 @@ application:
       path: /prometheus
       port: http
       
+  ## Endpoint Montior
+  endpointMonitor:
+    enabled: true
+    # add uptime robot additional config
+    additionalConfig:
+      uptimeRobotConfig:
+        alertContacts: "3514554"      
+
+## Dependency
+
+postgresql:
+  global:
+    postgresql: {}
+  fullnameOverride: inventory-postgres
+  image:
+    debug: false
+    pullPolicy: Always
+  volumePermissions:
+    enabled: true
+    image:
+      pullPolicy: Always
+      registry: docker.io
+      repository: bitnami/minideb
+      tag: stretch
+    securityContext:
+      runAsUser: "auto"
+  shmVolume:
+    chmod:
+      enabled: false
+  containerSecurityContext:
+    enabled: false    
+  securityContext:
+    enabled: false
+    fsGroup: 1001
+    runAsUser: 1001
+  serviceAccount:
+    enabled: true
+  replication:
+    applicationName: my_application
+    enabled: false
+    numSynchronousReplicas: 0
+    password: repl_password
+    slaveReplicas: 1
+    synchronousCommit: "off"
+    user: repl_user
+  postgresqlUsername: "admin"
+  usePasswordFile: false
+  existingSecret: inventory-postgres
+  postgresqlDatabase: "inventory"
+  postgresqlDataDir: /bitnami/postgresql/data
+  service:
+    annotations: {}
+    port: 5432
+    type: ClusterIP
+  persistence:
+    accessModes:
+    - ReadWriteOnce
+    enabled: true
+    mountPath: /bitnami/postgresql
+    size: 2Gi
+    storageClass: stakater 
+    subPath: ""
+  updateStrategy:
+    type: RollingUpdate
+  resources:
+    requests:
+      cpu: 200m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 1Gi
+  networkPolicy:
+    allowExternal: true
+    enabled: false
+  livenessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+  readinessProbe:
+    enabled: true
+    failureThreshold: 6
+    initialDelaySeconds: 5
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 5
+
