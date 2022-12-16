@@ -2,7 +2,7 @@ application:
   chart_path: deploy
   namespaceLabels:
     kind: pr
-    team: gabbar
+    team: alpha
     stakater.com/tenant: veeru
   value_overrides:
     application:
